@@ -49,7 +49,7 @@ namespace ProblematicProblem
                     Console.WriteLine($"\n'{userInput}' is not an acceptable input, please try again\n");
                     if (numFailedInputs % 3 == 0)
                     {
-                        Console.WriteLine("\nacceptable inputs are: ");
+                        Console.WriteLine("acceptable inputs are: ");
                         foreach (var yes in acceptableYes) { Console.WriteLine(yes); }
                         foreach (var no in acceptableNo) { Console.WriteLine(no); }
                         Console.WriteLine("\nwould you like to set your input as acceptable? type \"YES\"");
@@ -65,13 +65,19 @@ namespace ProblematicProblem
                                 userConfirm = Console.ReadLine();
                                 if (userConfirm == userInput)
                                 {
-                                    userSel = AskForInt("\nwould you like to add your input as a true/yes or a false/no input? \nenter 0 to cancel, enter 1 for true/yes, enter 2 for false/no", 0, 2);
+                                    userSel = AskForInt("\nwould you like to add your input as a true/yes or a false/no input? \nenter 0 to cancel \nenter 1 for true/yes \nenter 2 for false/no", 0, 2);
                                     if (userSel == 0)
                                         Console.WriteLine("good idea. try again");
                                     else if (userSel == 1)
+                                    {
+                                        Console.WriteLine($"adding {userInput} to acceptable 'yes' inputs\n");
                                         acceptableYes.Add(userInput);
+                                    }
                                     else if (userSel == 2)
+                                    {
+                                        Console.WriteLine($"adding {userInput} to acceptable 'no' inputs\n");
                                         acceptableNo.Add(userInput);
+                                    }
                                     else
                                         Console.WriteLine("we done made another mistake");
                                     confirmed = true;
@@ -107,7 +113,6 @@ namespace ProblematicProblem
                     Thread.Sleep(250);
                 }
                 bool addToList = AskForBool("\nWould you like to add any activities before we generate one? yes/no: ");
-                Console.WriteLine();
                 while (addToList)
                 {
                     Console.Write("\nWhat would you like to add? ");
